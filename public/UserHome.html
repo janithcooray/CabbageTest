@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">POST BOOK</a>
+
+  </div>
+
+
+</div>
+
+<div style="height: 200px;background-color: teal;position: relative;padding: 100px;">
+    <div style="background-color: white; height: 60px;position: relative;">
+        <input type="text" style="height: 60px;width: 100%;">
+    </div>
+</div>
+
+<div>
+    <div style="width: 50%;height: auto; background-color: tomato;float: left;" id="POSTS">
+    </div>
+    
+    <div style="width: 50%;height: 300px; background-color: blue;float: right;">
+        <center>
+            <h4>Name</h4>
+            <br>
+            <button>My Posts</button>
+            <br>
+            <button>Edit Profile</button>
+            <br>
+            <button>Logout</button>
+
+        </center>
+    </div>
+</div>
+
+<script>
+    function makePosts(list){
+        divs=[];
+        list.forEach(element => {
+            divs.push(
+            '<div style="height: auto;padding-left: 50px;margin-bottom: 50px;">'+
+            '<table style="width: 100%;"><h3>Title</h3><br><h6>Content</h6><br>'+
+            '<Button>Open</Button></table></div>');
+        });
+        document.getElementById("POSTS").innerHTML=divs.join("<br>");
+    }
+    makePosts(["","","",""]);
+</script>
+
+</body>
+</html>
