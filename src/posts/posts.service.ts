@@ -8,24 +8,31 @@ import { PostInterface } from './interfaces/interfacces';
 export class PostsService {
 
   constructor(
-    @Inject('COMMENT_MODEL')
+    @Inject('POST_MODEL')
     private comModel: Model<PostInterface>,
   ) {}
   
   create(createPostDto: CreatePostDto) {
+    console.log('added post');
+    const createPost=new this.comModel(createPostDto);
     return 'This action adds a new post';
   }
 
-  findAll() {
-    return `This action returns all posts`;
+  async findAll() {
+    const que:any= await this.comModel.find().exec();
+    return que;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} post`;
-  }
+  async findOne(id: number) {
+    const que:any= await this.comModel.findById(id).exec();
+    return `This action returns a #${que} comment`;
+    }
 
-  update(id: string, updatePostDto: UpdatePostDto) {
-    return `This action updates a #${id} post`;
+  async update(id: string, updatePostDto: UpdatePostDto) {
+    let toUpdate:any= await this.comModel.findById(id).exec();
+    let updated = Object.assign(toUpdate, updatePostDto);
+    const article = await updated.save();
+    return `This action updates a `+article;
   }
 
   remove(id: string) {
