@@ -1,13 +1,18 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { DatabaseModule } from './database/database.module';
+import { CommentsModule } from './comments/comments.module';
+import { join } from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
-import { CommentsModule } from './comments/comments.module';
-import { DatabaseModule } from './database/database.module';
 
 @Module({
-  imports: [UsersModule, PostsModule, CommentsModule, DatabaseModule],
+  imports: [DatabaseModule, CommentsModule,ServeStaticModule.forRoot({
+    rootPath: join(__dirname, '..', 'public'),
+    exclude: ['/api*'],
+  }), UsersModule, PostsModule],
   controllers: [AppController],
   providers: [AppService],
 })
