@@ -1,0 +1,42 @@
+//A user should be able to comment on a post
+POST http://localhost:3000/comments
+content-type: application/json
+
+{
+    "postID": "60d4434685a4cb13202aa0af",
+    "content": "Dont have one man.it just exits",
+    "author": "60d3857cecfda41edcb02660",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z"
+}
+###
+//Comment author should be able to edit the comment
+//PATCH  http://localhost:3000/comments/:commentid/:userid
+PATCH  http://localhost:3000/comments/60d449c98293923b68c8dc23/60d3857cecfda41edcb02660
+content-type: application/json
+
+{
+    "postID": "60d3aa4b1cfed24a50b6e33e",
+    "content": "Dont have one man. it just exits (EDITED)",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z"
+}
+###
+//API for fetching all comments
+GET http://localhost:3000/comments
+
+###
+//API for fetching all comments by post id
+//GET http://localhost:3000/Post/:postid
+GET http://localhost:3000/comments/Post/60d4434685a4cb13202aa0af
+###
+//API for fetching all comments by user id
+//GET http://localhost:3000/comments/My/:userid
+GET http://localhost:3000/comments/My/60d3857cecfda41edcb02660
+###
+//API for fetching all comments by comment id
+//GET http://localhost:3000/users/:commentid
+GET http://localhost:3000/comments/60d449c98293923b68c8dc23
+###
+//Comment author should be able to delete the comment
+//DELETE   http://localhost:3000/comments/:commentID/:userID
+DELETE   http://localhost:3000/comments/60d4483d8293923b68c8dbfa/60d3857cecfda41edcb02660

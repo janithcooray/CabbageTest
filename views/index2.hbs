@@ -1,0 +1,42 @@
+<html>
+<body>
+
+<form action="http://localhost:3000/comments/" method="post">
+Name: <input type="text" name="title"><br>
+E-mail: <input type="text" name="content"><br>
+Name: <input type="number" name="author"><br>
+Name: <input type="date" name="createdDate"><br>
+Name: <input type="date" name="lastUpdated"><br>
+
+<input type="submit">
+</form>
+
+<script>
+    var j={
+    title: "this was janiths day",
+    content: "it was awful",
+    author: 1,
+    createdDate: new Date(),
+    lastUpdated: new Date(),
+    };
+    console.log(JSON.stringify(j));
+    
+    var formBody = [];
+    for (var property in j) {
+    var encodedKey = encodeURIComponent(property);
+    var encodedValue = encodeURIComponent(j[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+
+    fetch('/comments/60d32e303c5f684528c9488f', {
+    method: 'PATCH',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    },
+    body: formBody
+    });
+</script>
+
+</body>
+</html>

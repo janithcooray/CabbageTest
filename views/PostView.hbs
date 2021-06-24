@@ -27,29 +27,22 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 <div style="height: 200px;background-color: teal;position: relative;padding: 100px;">
     <div style="background-color: white; height: 60px;position: relative;">
-       <center><H1>Login Or Create Account</H1></center> 
+        <input type="text" style="height: 60px;width: 100%;">
     </div>
 </div>
 
 <div>
-    <div style="width: 50%;height: 100px; background-color: white;float: left;">
-        <center><h2>Login</h2></center>
-        <form action="/s"  target="_blank" method="GET" >
-          <center>Name <input type="text" name="title">
-            <input onclick="window.location.href = '/UserCreate';" type="submit">
+    <div style="width: 50%;height: 300px; background-color: blue;">
+        <center>
+            <h4>Name</h4>
+            <br>
+            <button>My Posts</button>
+            <br>
+            <button>Edit Profile</button>
+            <br>
+            <button>Logout</button>
+
         </center>
-        </form>
-    </div>
-    
-    <div style="width: 50%;height: 300px; background-color: white;float: right;">
-        <center><h2>Create Account</h2></center>
-        <form action="http://localhost:3000/users" method="POST">
-          <center>Name <input type="text" name="name">
-            <input type="number" name="numberOfPosts" value="0">
-            <input type="Date" name="createdTime" value="2021-06-24T00:00:00.000Z">
-            <input type="submit">
-        </center>
-        </form>
     </div>
 </div>
 

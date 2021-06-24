@@ -11,10 +11,10 @@ export class CommentsService {
     private comModel: Model<CommentInterface>,
   ) {}
 
-  create(createCommentDto: CreateCommentDto) {
-    console.log('added comment');
+  async create(createCommentDto: CreateCommentDto) {
     const createComment=new this.comModel(createCommentDto);
-    return createComment.save();
+    await createComment.save();
+    return 'ADDED COMMENT';
   }
  
   async findAll() {
@@ -24,19 +24,35 @@ export class CommentsService {
 
   async findOne(id: string) {
     const que:any= await this.comModel.findById(id).exec();
-    return `This action returns a #${que} comment`;
+    return que;
   }
 
-  async update(id: string, updateCommentDto: UpdateCommentDto) {
+  async findForUser(user: string) {
+    const que:any= await this.comModel.find({author:user}).exec();
+    return que;
+  }
+
+  async findForPost(post: string) {
+    const que:any= await this.comModel.find({postID:post}).exec();
+    return que;
+  }
+
+  async update(id: string,userID:string, updateCommentDto: UpdateCommentDto) {
     let toUpdate:any= await this.comModel.findById(id).exec();
+    if(toUpdate.author!=userID){
+      return "NOT AUTHOR";
+    }
     let updated = Object.assign(toUpdate, updateCommentDto);
-    const article = await updated.save();
-    return `This action updates a `+article;
+    await updated.save();
+    return `UPDATED`;
   }
 
-  async remove(id: string) {
+  async remove(id: string,userID:string) {
     let toRemove:any= await this.comModel.findById(id).exec();
-    toRemove.delete();
-    return `This action removes a #${id} comment`;
+    if(toRemove.author!=userID){
+      return "NOT AUTHOR";
+    }
+    await toRemove.delete();
+    return `REMOVED`;
   }
 }

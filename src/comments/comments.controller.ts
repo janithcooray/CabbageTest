@@ -17,21 +17,33 @@ export class CommentsController {
     return this.commentsService.findAll();
   }
 
+
+  @Get('/My/:id')
+  findMy(@Param('id') id: string) {
+    return this.commentsService.findForUser(id);
+  }
+
+  @Get('/Post/:id')
+  findCommnets(@Param('id') id: string) {
+    return this.commentsService.findForPost(id);
+  }
+
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.commentsService.findOne(id);
   }
   
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCommentDto: UpdateCommentDto) {
+  @Patch('/:id/:user')
+  update(@Param('id') id: string,@Param('user') user: string, @Body() updateCommentDto: UpdateCommentDto) {
     console.log("patching "+id);
     console.log(updateCommentDto);
-    return this.commentsService.update(id, updateCommentDto);
+    return this.commentsService.update(id, user,updateCommentDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.commentsService.remove(id);
+  @Delete('/:id/:user')
+  remove(@Param('id') id: string,@Param('user') user: string) {
+    return this.commentsService.remove(id,user);
   }
 }

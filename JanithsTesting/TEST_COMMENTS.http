@@ -1,0 +1,243 @@
+//A user should be able to comment on a post
+POST http://localhost:3000/comments
+content-type: application/json
+
+{
+    "postID": "60d4434685a4cb13202aa0af",
+    "content": "Dont have one man.it just exits",
+    "author": "60d3857cecfda41edcb02660",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z"
+}
+
+returns:
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 13
+ETag: W/"d-KQ7Z0QKETCtWbJuTY0lZ0lD7HnY"
+Date: Thu, 24 Jun 2021 09:25:45 GMT
+Connection: close
+
+ADDED COMMENT
+###
+//TEST 1 Updating Comment with the same id that created it
+//Comment author should be able to edit the comment 
+//PATCH  http://localhost:3000/comments/:commentid/:userid
+PATCH  http://localhost:3000/comments/60d44f988293923b68c8dc5b/60d3857cecfda41edcb02660
+content-type: application/json
+
+{
+    "postID": "60d3aa4b1cfed24a50b6e33e",
+    "content": "Dont have one man. it just exits (EDITED)",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z"
+}
+###
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 7
+ETag: W/"7-R7I7OXWaGQjmgKCjtcs8mdbec14"
+Date: Thu, 24 Jun 2021 09:26:59 GMT
+Connection: close
+
+UPDATED
+###
+//TEST 2 Updating Comment with a different id
+//PATCH  http://localhost:3000/comments/:commentid/:userid
+PATCH  http://localhost:3000/comments/60d44f988293923b68c8dc5b/50d3857cecfda41edcb02660
+content-type: application/json
+
+{
+    "postID": "60d3aa4b1cfed24a50b6e33e",
+    "content": "Dont have one man. it just exits (EDITED)",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z"
+}
+
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 10
+ETag: W/"a-2+6ciaWFUG+waywn09KV6ShfJWo"
+Date: Thu, 24 Jun 2021 09:27:50 GMT
+Connection: close
+
+NOT AUTHOR
+###
+//API for fetching all comments
+GET http://localhost:3000/comments
+###
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 1002
+ETag: W/"3ea-zdOoKRpW+TUSK0c/BPsCpMfRFWs"
+Date: Thu, 24 Jun 2021 09:28:38 GMT
+Connection: close
+
+[
+  {
+    "_id": "60d43a151d7b1835b46156b3",
+    "postID": "60d3aa4b1cfed24a50b6e33e",
+    "content": "Can you post the stack",
+    "author": "60d385baecfda41edcb02663",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z",
+    "__v": 0
+  },
+  {
+    "_id": "60d43a3b1d7b1835b46156b6",
+    "postID": "60d3aa4b1cfed24a50b6e33e",
+    "content": "Dont have one man. it just exits (EDITED)",
+    "author": "60d385baecfda41edcb02663",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z",
+    "__v": 0
+  }
+]
+
+###
+//API for fetching all comments by post id
+//GET http://localhost:3000/Post/:postid
+GET http://localhost:3000/comments/Post/60d3aa4b1cfed24a50b6e33e
+
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 1002
+ETag: W/"3ea-zdOoKRpW+TUSK0c/BPsCpMfRFWs"
+Date: Thu, 24 Jun 2021 09:29:20 GMT
+Connection: close
+
+[
+  {
+    "_id": "60d43a151d7b1835b46156b3",
+    "postID": "60d3aa4b1cfed24a50b6e33e",
+    "content": "Can you post the stack",
+    "author": "60d385baecfda41edcb02663",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z",
+    "__v": 0
+  },
+  {
+    "_id": "60d43a3b1d7b1835b46156b6",
+    "postID": "60d3aa4b1cfed24a50b6e33e",
+    "content": "Dont have one man. it just exits (EDITED)",
+    "author": "60d385baecfda41edcb02663",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z",
+    "__v": 0
+  },
+  {
+    "_id": "60d449c98293923b68c8dc23",
+    "postID": "60d3aa4b1cfed24a50b6e33e",
+    "content": "Dont have one man. it just exits (EDITED)",
+    "author": "60d3857cecfda41edcb02660",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z",
+    "__v": 0
+  },
+  {
+    "_id": "60d44f988293923b68c8dc5b",
+    "postID": "60d3aa4b1cfed24a50b6e33e",
+    "content": "Dont have one man. it just exits (EDITED)",
+    "author": "60d3857cecfda41edcb02660",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z",
+    "__v": 0
+  }
+]
+###
+//API for fetching all comments by user id
+//GET http://localhost:3000/comments/My/:userid
+GET http://localhost:3000/comments/My/60d3857cecfda41edcb02660
+###
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 511
+ETag: W/"1ff-I4ECr3X8UPxysRp9fpnx9RWoAM8"
+Date: Thu, 24 Jun 2021 09:30:39 GMT
+Connection: close
+
+[
+  {
+    "_id": "60d449c98293923b68c8dc23",
+    "postID": "60d3aa4b1cfed24a50b6e33e",
+    "content": "Dont have one man. it just exits (EDITED)",
+    "author": "60d3857cecfda41edcb02660",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z",
+    "__v": 0
+  },
+  {
+    "_id": "60d44f988293923b68c8dc5b",
+    "postID": "60d3aa4b1cfed24a50b6e33e",
+    "content": "Dont have one man. it just exits (EDITED)",
+    "author": "60d3857cecfda41edcb02660",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z",
+    "__v": 0
+  }
+]
+###
+//API for fetching all comments by comment id
+//GET http://localhost:3000/users/:commentid
+GET http://localhost:3000/comments/60d449c98293923b68c8dc23
+
+###
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 254
+ETag: W/"fe-TTbcmRl8JBIHR7kaGihOcwFPl9g"
+Date: Thu, 24 Jun 2021 09:30:59 GMT
+Connection: close
+
+{
+  "_id": "60d449c98293923b68c8dc23",
+  "postID": "60d3aa4b1cfed24a50b6e33e",
+  "content": "Dont have one man. it just exits (EDITED)",
+  "author": "60d3857cecfda41edcb02660",
+  "createdTime": "2021-06-24T00:00:00.000Z",
+  "lastUpdatedTime": "2021-06-24T00:00:00.000Z",
+  "__v": 0
+}
+###
+
+//Comment author should be able to delete the comment
+//DELETE   http://localhost:3000/comments/:commentID/:userID
+DELETE   http://localhost:3000/comments/60d449c98293923b68c8dc23/60d3857cecfda41edcb02660
+###
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 7
+ETag: W/"7-SrORnj1fM+vZd6Gve6n7UVmiS4Y"
+Date: Thu, 24 Jun 2021 09:32:32 GMT
+Connection: close
+
+REMOVED
+###
+//Comment author should be able to delete the comment
+//DELETE   http://localhost:3000/comments/:commentID/:userID
+DELETE   http://localhost:3000/comments/60d449c98293923b68c8dc23/60d3855cecfda41edcb02660
+###
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 10
+ETag: W/"a-2+6ciaWFUG+waywn09KV6ShfJWo"
+Date: Thu, 24 Jun 2021 09:32:12 GMT
+Connection: close
+
+NOT AUTHOR
+###

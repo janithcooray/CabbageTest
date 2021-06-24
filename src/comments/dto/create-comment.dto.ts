@@ -1,8 +1,8 @@
 
 export class CreateCommentDto {
-  readonly title: Text;
-  readonly content: Text;
-   readonly author: Number;
-   readonly createdDate: Date;
-   readonly lastUpdated: Date;
+   readonly postID: Text;
+   readonly content: Text;
+   readonly author: Text;
+   readonly createdTime: Date;
+   readonly lastUpdatedTime: Date;
 }

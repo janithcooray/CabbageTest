@@ -1,0 +1,191 @@
+
+//API for fetching all posts
+GET http://localhost:3000/Posts
+
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 2320
+ETag: W/"910-CQapKPtKI0QXEJke7dAZQ36I7gU"
+Date: Thu, 24 Jun 2021 09:16:49 GMT
+Connection: close
+
+[
+  {
+    "_id": "60d3aa8c1cfed24a50b6e340",
+    "title": "Assembly 50 divided by 2 returns 28. Does it use hexa values?",
+    "content": "It has been terrible",
+    "author": "60d385baecfda41edcb02663",
+    "createdTime": "2021-06-23T21:41:32.000Z",
+    "lastUpdatedTime": "2021-06-23T21:41:32.000Z",
+    "__v": 0
+  },
+  {
+    "_id": "60d3ab901cfed24a50b6e34a",
+    "title": "Randomize Textview text Colors kotlin android ",
+    "content": "It has been terrible",
+    "author": "60d385baecfda41edcb02663",
+    "createdTime": "2021-06-23T21:45:52.000Z",
+    "lastUpdatedTime": "2021-06-23T21:45:52.000Z",
+    "__v": 0
+  },
+  {
+    "_id": "60d3ac1e1cfed24a50b6e34f",
+    "title": "Janiths Day",
+    "content": "It has been terrible BU OK",
+    "author": "60d385baecfda41edcb02663",
+    "createdTime": "2021-06-23T21:48:14.000Z",
+    "lastUpdatedTime": "2021-06-23T21:48:14.000Z",
+    "__v": 0
+  }
+]
+
+###
+//API for fetching posts by user id
+//GET http://localhost:3000/Posts/My/:userID
+GET http://localhost:3000/Posts/My/60d3857cecfda41edcb02660
+
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 203
+ETag: W/"cb-mv1s1kdVwqxyl5/dgHUweTjHFY8"
+Date: Thu, 24 Jun 2021 09:17:27 GMT
+Connection: close
+
+[
+  {
+    "_id": "60d4434685a4cb13202aa0af",
+    "title": "One Post",
+    "content": "linux",
+    "author": "60d3857cecfda41edcb02660",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T01:30:00.000Z",
+    "__v": 0
+  }
+]
+###
+//API for fetching posts by post id
+//GET http://localhost:3000/Posts/:postID
+GET http://localhost:3000/Posts/60d4434685a4cb13202aa0af
+
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 201
+ETag: W/"c9-ogo9VqqKm46yuxUPLPcyf2kIqkI"
+Date: Thu, 24 Jun 2021 09:17:50 GMT
+Connection: close
+
+{
+  "_id": "60d4434685a4cb13202aa0af",
+  "title": "One Post",
+  "content": "linux",
+  "author": "60d3857cecfda41edcb02660",
+  "createdTime": "2021-06-24T00:00:00.000Z",
+  "lastUpdatedTime": "2021-06-24T01:30:00.000Z",
+  "__v": 0
+}
+###
+//Author can create posts
+POST http://localhost:3000/Posts
+content-type: application/json
+
+{
+    "title": "TEST IN ONE",
+    "content": "Bash Scrpit does not compare string properly",
+    "author": "60d3857cecfda41edcb02660",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z"
+}
+
+returns:
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 10
+ETag: W/"a-VfrX2furFx88ZhloV0+yglvMlJM"
+Date: Thu, 24 Jun 2021 09:18:56 GMT
+Connection: close
+
+ADDED POST
+###
+//Author can edit his posts TEST 1 EDITING WITH THE SAME USER ID AS THE ONE THAT MADE IT
+
+//PATCH http://localhost:3000/Posts/:Postid/:UserID
+PATCH http://localhost:3000/Posts/60d44e008293923b68c8dc4f/60d3857cecfda41edcb02660
+content-type: application/json
+
+{
+    "title": "One Post",
+    "content": "linux",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T01:30:00.000Z"
+}
+
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 7
+ETag: W/"7-R7I7OXWaGQjmgKCjtcs8mdbec14"
+Date: Thu, 24 Jun 2021 09:20:34 GMT
+Connection: close
+
+UPDATED
+###
+//Author can edit his posts TEST 2 EDITING WITH ADIFFERENT USER ID
+
+//PATCH http://localhost:3000/Posts/:Postid/:UserID
+PATCH http://localhost:3000/Posts/60d44e008293923b68c8dc4f/60345cecfda41edcb02660
+content-type: application/json
+
+{
+    "title": "One Post",
+    "content": "linux",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T01:30:00.000Z"
+}
+
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 10
+ETag: W/"a-2+6ciaWFUG+waywn09KV6ShfJWo"
+Date: Thu, 24 Jun 2021 09:21:47 GMT
+Connection: close
+
+NOT AUTHOR
+###
+//Author can delete his posts
+//DELETE http://localhost:3000/Posts/:post_id/:UserID
+DELETE http://localhost:3000/Posts/60d44e008293923b68c8dc4f/60d3857cecfda41edcb02660
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 7
+ETag: W/"7-SrORnj1fM+vZd6Gve6n7UVmiS4Y"
+Date: Thu, 24 Jun 2021 09:23:22 GMT
+Connection: close
+
+REMOVED
+###
+//Deleting post with a different UserID
+//DELETE http://localhost:3000/Posts/:post_id/:UserID
+DELETE http://localhost:3000/Posts/60d44e008293923b68c8dc4f/60d33727cecfda41edcb02660
+
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 10
+ETag: W/"a-2+6ciaWFUG+waywn09KV6ShfJWo"
+Date: Thu, 24 Jun 2021 09:23:08 GMT
+Connection: close
+
+NOT AUTHOR

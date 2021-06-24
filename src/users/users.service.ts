@@ -13,9 +13,10 @@ export class UsersService {
   ) {}
 
   create(createUserDto: CreateUserDto) {
-    console.log('added Comment');
-    const createPost=new this.comModel(createUserDto);
-    return 'This action adds a new user';  } 
+    const createUser=new this.comModel(createUserDto);
+    createUser.save();
+    return 'ADDED USER';  } 
+
 
   async findAll() {
     const que:any= await this.comModel.find().exec();
@@ -24,17 +25,24 @@ export class UsersService {
 
   async findOne(id: string) {
     const que:any= await this.comModel.findById(id).exec();
-    return `This action returns a #${que} comment`;
-    }
+    return que;
+  }
+
+  async findUser(name: string) {
+    const que:any= await this.comModel.findOne({'name':name}).exec();
+    return que;
+  }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
     let toUpdate:any= await this.comModel.findById(id).exec();
     let updated = Object.assign(toUpdate, updateUserDto);
     const article = await updated.save();
-    return `This action updates a `+article;
+    return `UPDATED`;
   }
 
   async remove(id: string) {
-    return `This action removes a #${id} post`;
+    let toREmove:any= await this.comModel.findById(id).exec();
+    await toREmove.remove();
+    return `REMOVED`;
   }
 }

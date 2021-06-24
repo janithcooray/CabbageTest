@@ -1,0 +1,85 @@
+//API for fetching all users
+GET http://localhost:3000/users
+
+returns :
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 237
+ETag: W/"ed-34ZW9/9a8GZdI36B5cv69kkvWD8"
+Date: Thu, 24 Jun 2021 09:13:29 GMT
+Connection: close
+
+[
+  {
+    "_id": "60d3857cecfda41edcb02660",
+    "name": "janith",
+    "numberOfPosts": 3,
+    "createdDate": "2021-06-24T00:00:00.000Z",
+    "__v": 0
+  },
+  {
+    "_id": "60d385baecfda41edcb02663",
+    "name": "jibril",
+    "numberOfPosts": 0,
+    "createdDate": "2021-06-23T19:04:26.000Z",
+    "__v": 0
+  }
+]
+###
+//User creation
+POST http://localhost:3000/users
+content-type: application/json
+
+{
+        "name": "juan",
+        "numberOfPosts": 0,
+        "createdDate": "2021-06-24T00:00:00.000Z"
+}
+
+returns:
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 10
+ETag: W/"a-vTdijXdmKg5SxTT4ZdAuLwpO5hE"
+Date: Thu, 24 Jun 2021 09:13:54 GMT
+Connection: close
+
+ADDED USER
+###
+//User’s name should be editable
+//PATCH http://localhost:3000/users/:user_id
+PATCH http://localhost:3000/users/60d44cd28293923b68c8dc3f
+content-type: application/json
+
+{
+        "name": "juan sama"
+}
+
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 7
+ETag: W/"7-R7I7OXWaGQjmgKCjtcs8mdbec14"
+Date: Thu, 24 Jun 2021 09:15:08 GMT
+Connection: close
+
+UPDATED
+###
+//User should be removable
+//DELETE http://localhost:3000/users/:id
+DELETE http://localhost:3000/users/60d44cd28293923b68c8dc3f
+
+returns:
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 7
+ETag: W/"7-SrORnj1fM+vZd6Gve6n7UVmiS4Y"
+Date: Thu, 24 Jun 2021 09:15:39 GMT
+Connection: close
+
+REMOVED

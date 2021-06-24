@@ -1,0 +1,46 @@
+
+//API for fetching all posts
+GET http://localhost:3000/Posts
+###
+//API for fetching posts by user id
+//GET http://localhost:3000/Posts/My/:userID
+GET http://localhost:3000/Posts/My/60d3857cecfda41edcb02660
+###
+//API for fetching posts by post id
+//GET http://localhost:3000/Posts/:postID
+GET http://localhost:3000/Posts/60d44afa8293923b68c8dc33
+###
+//Author can create posts
+POST http://localhost:3000/Posts
+content-type: application/json
+
+{
+    "title": "TEST IN ONE",
+    "content": "Bash Scrpit does not compare string properly",
+    "author": "60d3857cecfda41edcb02660",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T00:00:00.000Z"
+}
+###
+//Author can edit his posts
+
+//PATCH http://localhost:3000/Posts/:Postid/:UserID
+PATCH http://localhost:3000/Posts/60d4434685a4cb13202aa0af/60d3857cecfda41edcb02660
+content-type: application/json
+
+{
+    "title": "One Post",
+    "content": "linux",
+    "createdTime": "2021-06-24T00:00:00.000Z",
+    "lastUpdatedTime": "2021-06-24T01:30:00.000Z"
+}
+###
+//Author can delete his posts
+//DELETE http://localhost:3000/Posts/:post_id/:UserID
+DELETE http://localhost:3000/Posts/60d44afa8293923b68c8dc33/60d3857cecfda41edcb02660
+
+###
+//Author can delete his posts
+//DELETE http://localhost:3000/Posts/:post_id/:UserID
+DELETE http://localhost:3000/Posts/60d44de58293923b68c8dc4a/60d3857cecfda41edcb02660
+###

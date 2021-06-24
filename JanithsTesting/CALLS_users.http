@@ -1,0 +1,26 @@
+//API for fetching all users
+GET http://localhost:3000/users
+###
+//User creation
+POST http://localhost:3000/users
+content-type: application/json
+
+{
+        "name": "juan",
+        "numberOfPosts": 0,
+        "createdDate": "2021-06-24T00:00:00.000Z"
+}
+###
+//User’s name should be editable
+//PATCH http://localhost:3000/users/:user_id
+PATCH http://localhost:3000/users/60d446498293923b68c8dbde
+content-type: application/json
+
+{
+        "name": "juan sama"
+}
+
+###
+//User should be removable
+//DELETE http://localhost:3000/users/:id
+DELETE http://localhost:3000/users/60d446498293923b68c8dbde

@@ -9,10 +9,7 @@ import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
 
 @Module({
-  imports: [DatabaseModule, CommentsModule,ServeStaticModule.forRoot({
-    rootPath: join(__dirname, '..', 'public'),
-    exclude: ['/api*'],
-  }), UsersModule, PostsModule],
+  imports: [DatabaseModule, CommentsModule, UsersModule, PostsModule],
   controllers: [AppController],
   providers: [AppService],
 })

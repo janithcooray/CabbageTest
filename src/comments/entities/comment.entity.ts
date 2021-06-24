@@ -1,7 +1,7 @@
 export class Comment {
-    title: String;
+    postID: String;
     content: String;
-    author: Number;
-    createdDate: Date;
-    lastUpdated: Date;
+    author: String;
+    createdTime: Date;
+    lastUpdatedTime: Date;
 }
